@@ -4,7 +4,6 @@
   padding: 0px;
 }
 .pageAccueil {
-  background-image: url("images/bg.png");
   height: 100vh;
 }
 .pageAccueil .modal {
@@ -82,35 +81,136 @@
 .startButton:hover {
   outline: 0;
 }
-.pageSelection {
+.pageSelection1 {
   display: none;
-  background-image: url("images/bgselection.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: 70%;
   height: 100vh;
   flex-direction: column;
-  justify-content: center;
-  background-color: #0f67eb;
+  background-color: #1e4985;
 }
-.pageSelection .players {
+.pageSelection1 .player1 {
   color: white;
-  background-color: rgba(0, 0, 0, 0.8);
-  height: 100px;
+  background-color: #1e4985;
+  height: 10vh;
   font-size: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 25px;
 }
-.pageSelection button {
+.pageSelection1 button {
   padding: 5px;
 }
-.pageSelection .personnages1 {
-  background-color: rgba(0, 0, 0, 0.8);
-  height: 500px;
+.pageSelection1 .personnages1 {
+  background-color: #1e4985;
+  height: 70vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  animation: bouger-haut-bas 1.2s ease-in-out infinite alternate;
 }
-.pageSelection .personnages img {
-  margin-right: 10px;
+.pageSelection1 .personnages1 img {
+  width: 450px;
+  height: 500px;
+}
+@keyframes bouger-haut-bas {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.pageSelection1 .buttonSelectP2 {
+  width: 20%;
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-size: 2rem;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  align-self: center;
+}
+.pageSelection2 {
+  display: none;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #1e4985;
+}
+.player2 {
+  color: white;
+  background-color: #1e4985;
+  height: 10vh;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+button {
+  padding: 5px;
+}
+.personnages2 {
+  background-color: #1e4985;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: bouger-haut-bas 2s ease-in-out infinite alternate;
+}
+.personnages2 img {
+  width: 450px;
+  height: 500px;
+}
+@keyframes bouger-haut-bas {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.buttonStartGame {
+  width: 20%;
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-size: 2rem;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  align-self: center;
+}
+.phaseDeCombat {
+  background-color: aquamarine;
+  width: 100vh;
+  height: 600px;
 }

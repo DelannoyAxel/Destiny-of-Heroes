@@ -211,6 +211,63 @@ button {
 }
 .phaseDeCombat {
   background-color: aquamarine;
-  width: 100vh;
-  height: 600px;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+}
+.phaseDeCombat #combatP1 {
+  width: 50%;
+  height: 100vh;
+  background-color: pink;
+  position: relative;
+}
+.phaseDeCombat #combatP1 h2 {
+  text-align: center;
+}
+.phaseDeCombat #combatP1 .imgIopP1,
+.phaseDeCombat #combatP1 .imgCraP1,
+.phaseDeCombat #combatP1 .imgXelP1,
+.phaseDeCombat #combatP1 .imgEniP1 {
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  display: none;
+}
+.phaseDeCombat #combatP1 .caracteristiquesP1 {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  color: #0088ff;
+  font-size: 2REM;
+}
+.phaseDeCombat #combatP2 {
+  width: 50%;
+  background-color: #dbb752;
+  position: relative;
+  height: 100vh;
+}
+.phaseDeCombat #combatP2 h2 {
+  text-align: center;
+}
+.phaseDeCombat #combatP2 .imgIopP2,
+.phaseDeCombat #combatP2 .imgCraP2,
+.phaseDeCombat #combatP2 .imgXelP2,
+.phaseDeCombat #combatP2 .imgEniP2 {
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  display: none;
+}
+.phaseDeCombat #combatP2 .caracteristiquesP2 {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  color: #0088ff;
+  font-size: 2REM;
 }

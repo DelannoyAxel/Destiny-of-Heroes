@@ -215,8 +215,6 @@ body {}
 .player2{
     color: white;
     background-color: rgb(30, 73, 133);
-    // position: relative;
-    // top: 50px;
     height: 10vh;
     font-size: 2.5rem;
     display: flex;
@@ -307,6 +305,77 @@ button {
 
 .phaseDeCombat{
     background-color: aquamarine;
-    width: 100vh;
-    height: 600px;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+
+    #combatP1{
+        width: 50%;
+        height: 100vh;
+        background-color: pink;
+        position: relative;
+
+        h2{
+            text-align: center;
+    
+            }
+
+        .imgIopP1,
+        .imgCraP1,
+        .imgXelP1,
+        .imgEniP1 {
+            position: absolute;
+            top: 10%;
+            left: 25%;
+            width: 50%;
+            display: none;
+        }
+
+        .caracteristiquesP1 {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            color: rgb(0, 136, 255);  
+            font-size: 2REM;      
+        }
+        
+       
+    }
+
+    #combatP2{
+        width: 50%;
+        background-color: rgb(219, 183, 82);
+        position: relative;
+        height: 100vh;
+
+        h2{
+            text-align: center;
+    
+            }
+
+        .imgIopP2,
+        .imgCraP2,
+        .imgXelP2,
+        .imgEniP2 {
+            position: absolute;
+            top: 10%;
+            left: 25%;
+            width: 50%;
+            display: none;
+        }
+        
+        .caracteristiquesP2 {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            color: rgb(0, 136, 255);  
+            font-size: 2REM;      
+        }
+        
+    
+    }
 }

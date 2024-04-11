@@ -73,6 +73,26 @@ switch (choixJ2) {
         break;
 }
 
+const submitPlayer1 = document.getElementById('submitPlayer1');
+const submitPlayer2 = document.getElementById('submitPlayer2');
+
+const pseudoPlayer1 = document.getElementById('pseudoPlayer1');
+const pseudoPlayer2 = document.getElementById('pseudoPlayer2');
+
+const player1Name = document.querySelector('#combatP1 h2');
+const player2Name = document.querySelector('#combatP2 h2');
+
+submitPlayer1.addEventListener('click', () => {
+    const playerName = pseudoPlayer1.value;
+    player1Name.textContent = playerName;
+});
+
+submitPlayer2.addEventListener('click', () => {
+    const playerName = pseudoPlayer2.value;
+    player2Name.textContent = playerName;
+});
+
+
 startButton.addEventListener('click', () => {
     pageAccueil.style.display = "none"
     pageSelection1.style.display = "flex"
@@ -290,6 +310,36 @@ const imgCraP2 = document.querySelector('.imgCraP2');
 const imgXelP2 = document.querySelector('.imgXelP2');
 const imgEniP2 = document.querySelector('.imgEniP2');
 
+function startAnimation(parentElement, duration) {
+    // Vérifier si l'élément d'animation existe déjà
+    const existingAnimationDiv = parentElement.querySelector('.animation-div');
+    if (existingAnimationDiv) {
+        parentElement.removeChild(existingAnimationDiv); // Supprimer l'élément existant
+    }
+
+    // Créer un nouvel élément d'animation
+    const animationDiv = document.createElement('div');
+    animationDiv.classList.add('animation-div'); // Ajouter une classe pour référence future
+    parentElement.appendChild(animationDiv);
+    animationDiv.textContent = "C'est à ton tour!";
+    animationDiv.style.color = 'white';
+    animationDiv.style.backgroundColor = 'transparent';
+    animationDiv.style.position = 'absolute';
+    animationDiv.style.bottom = '90%';
+    animationDiv.style.fontSize = '4rem';
+    const timingFunction = 'cubic-bezier(0.1, 0, 0.0, 1)';
+    animationDiv.animate([
+        { left: '100%' }, // Départ de la droite de l'écran
+        { left: '14%' }   // Arrêt au milieu de l'écran
+    ], {
+        duration: duration,   // Durée de l'animation en millisecondes
+        easing: timingFunction, // Fonction d'interpolation
+        fill: 'forwards'  // Garde l'état final de l'animation après la fin
+    });
+}
+
+
+
 startGameButton.addEventListener('click', () => {
     if (choixJ2 == null) {
         alert("Le joueur 2 doit choisir une classe avant de continuer.");
@@ -299,6 +349,9 @@ startGameButton.addEventListener('click', () => {
         // Afficher l'écran de combat
         pageSelection2.style.display = 'none';
         phaseDeCombat.style.display = 'flex';
+        startAnimation(phaseDeCombat, 1500); // Démarrer l'animation
+
+
 
         // Cacher toutes les images sauf celle sélectionnée par le joueur 1
         switch (choixJ1.nom) {
@@ -325,64 +378,123 @@ startGameButton.addEventListener('click', () => {
             default:
                 break;
         }
-        const caracteristiquesP1 = document.querySelector('.caracteristiquesP1');
-
-
-        const paragrapheNomClasseJ1 = document.createElement('p');
-        caracteristiquesP1.appendChild(paragrapheNomClasseJ1);
-        paragrapheNomClasseJ1.textContent = "Classe: " + choixJ1.nom;
-
-        const buttonAtkJ1 = document.createElement("button");
-        caracteristiquesP1.appendChild(buttonAtkJ1);
-        buttonAtkJ1.textContent = "Atk: " + choixJ1.atk;
-        buttonAtkJ1.style.backgroundColor = "black";
-        buttonAtkJ1.style.width = "200px";
-        buttonAtkJ1.style.height = "50px";
-        buttonAtkJ1.style.border = "1px solid white";
-        buttonAtkJ1.style.color = "white";
-        buttonAtkJ1.style.textAlign = "center";
-        buttonAtkJ1.style.fontSize = "1.2rem";
-        buttonAtkJ1.style.marginBottom = '10px';
-        buttonAtkJ1.style.marginTop = '10px';
-
-
-
-        const barrePdvJ1 = document.createElement('div');
-        caracteristiquesP1.appendChild(barrePdvJ1);
-        barrePdvJ1.textContent = "Pdv: " + choixJ1.pointDeVie;
-        barrePdvJ1.style.backgroundColor = "red";
-        barrePdvJ1.style.width = "400px";
-        barrePdvJ1.style.height = "50px";
-        barrePdvJ1.style.border = "1px solid black";
-        barrePdvJ1.style.color = "white";
-        barrePdvJ1.style.textAlign = "center";
-
-        let tourDuJoueur1 = true;
-
-        // const buttonAtkJ1 = document.getElementById('#buttonAtkJ1');
-        buttonAtkJ1.addEventListener('click', () => {
-            if (tourDuJoueur1) {
-                // Vérifier si le joueur 2 a des points de vie restants
-                if (choixJ2.pointDeVie > 0) {
-                    // Réduire les points de vie du joueur 2 en fonction de l'attaque du joueur 1
-                    choixJ2.pointDeVie += choixJ1.atk;
-
-                    barrePdvJ2.textContent = "Pdv: " + choixJ2.pointDeVie;
-
-                    // Vérifier si le joueur 2 est vaincu
-                    if (choixJ2.pointDeVie <= 0) {
-                        alert("Le joueur 2 a été vaincu !");
-                    } else {
-                        console.log("Points de vie restants du joueur 2 :", choixJ2.pointDeVie);
-                    }
-
-                    // Passer le tour au joueur 2
-                    tourDuJoueur1 = false;
-                }
-            }
-        });
-
     }
+
+    const caracteristiquesP1 = document.querySelector('.caracteristiquesP1');
+    const paragrapheNomClasseJ1 = document.createElement('p');
+    caracteristiquesP1.appendChild(paragrapheNomClasseJ1);
+    paragrapheNomClasseJ1.textContent = "Classe: " + choixJ1.nom;
+
+    const buttonAtkJ1 = document.createElement("button");
+    caracteristiquesP1.appendChild(buttonAtkJ1);
+    buttonAtkJ1.textContent = "Atk: " + choixJ1.atk;
+    buttonAtkJ1.style.backgroundColor = "black";
+    buttonAtkJ1.style.width = "200px";
+    buttonAtkJ1.style.height = "50px";
+    buttonAtkJ1.style.border = "1px solid white";
+    buttonAtkJ1.style.color = "white";
+    buttonAtkJ1.style.textAlign = "center";
+    buttonAtkJ1.style.fontSize = "1.2rem";
+    buttonAtkJ1.style.marginBottom = '10px';
+    buttonAtkJ1.style.marginTop = '10px';
+
+
+    const barrePdvJ1 = document.createElement('div');
+    caracteristiquesP1.appendChild(barrePdvJ1);
+    barrePdvJ1.textContent = "Pdv: " + choixJ1.pointDeVie;
+    barrePdvJ1.style.width = "400px";
+    barrePdvJ1.style.height = "50px";
+    barrePdvJ1.style.border = "1px solid black";
+    barrePdvJ1.style.color = "white";
+    barrePdvJ1.style.textAlign = "center";
+    barrePdvJ1.style.zIndex = "101";
+
+
+    const barrePdvModulableJ1 = document.createElement('div');
+    document.body.appendChild(barrePdvModulableJ1); // Ajoute barrePdvModulableJ2 au body ou à son parent direct
+    barrePdvModulableJ1.style.background = 'red';
+    barrePdvModulableJ1.style.width = "400px";
+    barrePdvModulableJ1.style.height = "50px";
+    barrePdvModulableJ1.style.position = 'absolute';
+    barrePdvModulableJ1.style.top = '87.5%';
+    barrePdvModulableJ1.style.left = '14.6%';
+    barrePdvModulableJ1.style.zIndex = '100';
+
+    function startAnimationJ1(parentElement, duration) {
+        // Vérifier si l'élément d'animation existe déjà
+        const existingAnimationDiv = parentElement.querySelector('.animation-div');
+        if (existingAnimationDiv) {
+            parentElement.removeChild(existingAnimationDiv); // Supprimer l'élément existant
+        }
+
+        // Créer un nouvel élément d'animation
+        const animationDiv = document.createElement('div');
+        animationDiv.classList.add('animation-div'); // Ajouter une classe pour référence future
+        parentElement.appendChild(animationDiv);
+        animationDiv.textContent = "C'est à ton tour!";
+        animationDiv.style.backgroundColor = 'transparent';
+        animationDiv.style.color = 'white';
+        animationDiv.style.position = 'absolute';
+        animationDiv.style.bottom = '90%';
+        animationDiv.style.fontSize = '4rem';
+        const timingFunction = 'cubic-bezier(0.1, 0, 0.0, 1)';
+        animationDiv.animate([
+            { left: '100%' },
+            { left: '14%' }
+        ], {
+            duration: duration,   // Durée de l'animation en millisecondes
+            easing: timingFunction, // Fonction d'interpolation
+            fill: 'forwards'  // Garde l'état final de l'animation après la fin
+        });
+    }
+
+
+
+    let tourDuJoueur1 = true;
+
+
+
+
+    buttonAtkJ1.addEventListener('click', () => {
+        if (tourDuJoueur1) {
+
+            // Vérifier si le joueur 1 a des points de vie restants
+            if (choixJ2.pointDeVie > 0) {
+                // Réduire les points de vie du joueur 1 en fonction de l'attaque du joueur 2
+
+                choixJ2.pointDeVie += choixJ1.atk;
+                // Mettez à jour la barre de vie du joueur 2
+                barrePdvJ2.textContent = "Pdv: " + choixJ2.pointDeVie;
+                barrePdvModulableJ2.style.width = choixJ2.pointDeVie - choixJ1.atk;
+
+                // Vérifier si le joueur 1 est vaincu
+                if (choixJ2.pointDeVie <= 0) {
+                    alert("Le joueur 2 a été vaincu !");
+                } else {
+                    console.log("Points de vie restants du joueur 2 :", choixJ2.pointDeVie);
+                }
+
+                // Passer le tour au joueur 1
+                tourDuJoueur1 = false;
+                tourDuJoueur2 = false;
+                startAnimationJ2(phaseDeCombat, 1500); // Démarrer l'animation
+
+
+                imgIopP1.style.animation = 'none'; // Stop de l'animation
+                imgCraP1.style.animation = 'none'; // Stop de l'animation
+                imgXelP1.style.animation = 'none'; // Stop de l'animation
+                imgEniP1.style.animation = 'none'; // Stop de l'animation
+
+
+                imgIopP2.style.animation = 'bouger-haut-bas 2s infinite'; // activation de l'animation pour le J2
+                imgCraP2.style.animation = 'bouger-haut-bas 2s infinite'; // activation de l'animation pour le J2
+                imgXelP2.style.animation = 'bouger-haut-bas 2s infinite'; // activation de l'animation pour le J2
+                imgEniP2.style.animation = 'bouger-haut-bas 2s infinite'; // activation de l'animation pour le J2
+            }
+        }
+    });
+
+
     switch (choixJ2.nom) {
         case "Iop":
             imgIopP2.style.display = 'block';
@@ -420,21 +532,101 @@ startGameButton.addEventListener('click', () => {
     buttonAtkJ2.style.marginBottom = '10px';
     buttonAtkJ2.style.marginTop = '10px';
 
+
     const barrePdvJ2 = document.createElement('div');
     caracteristiquesP2.appendChild(barrePdvJ2);
     barrePdvJ2.textContent = "Pdv: " + choixJ2.pointDeVie;
-    barrePdvJ2.style.backgroundColor = "red";
     barrePdvJ2.style.width = "400px";
     barrePdvJ2.style.height = "50px";
     barrePdvJ2.style.border = "1px solid black";
     barrePdvJ2.style.color = "white";
+    barrePdvJ2.style.zIndex = "101";
     barrePdvJ2.style.textAlign = "center";
 
+    const barrePdvModulableJ2 = document.createElement('div');
+    document.body.appendChild(barrePdvModulableJ2); // Ajoute barrePdvModulableJ2 au body ou à son parent direct
+    barrePdvModulableJ2.style.background = 'red';
+    barrePdvModulableJ2.style.width = "400px";
+    barrePdvModulableJ2.style.height = "50px";
+    barrePdvModulableJ2.style.position = 'absolute';
+    barrePdvModulableJ2.style.top = '87.5%';
+    barrePdvModulableJ2.style.left = '64.6%';
+    barrePdvModulableJ2.style.zIndex = '100';
 
+
+
+
+
+
+
+    function startAnimationJ2(parentElement, duration) {
+        // Vérifier si l'élément d'animation existe déjà
+        const existingAnimationDiv = parentElement.querySelector('.animation-div');
+        if (existingAnimationDiv) {
+            parentElement.removeChild(existingAnimationDiv); // Supprimer l'élément existant
+        }
+
+        // Créer un nouvel élément d'animation
+        const animationDiv = document.createElement('div');
+        animationDiv.classList.add('animation-div'); // Ajouter une classe pour référence future
+        parentElement.appendChild(animationDiv);
+        animationDiv.textContent = "C'est à ton tour!";
+        animationDiv.style.backgroundColor = 'transparent';
+        animationDiv.style.color = 'white';
+        animationDiv.style.position = 'absolute';
+        animationDiv.style.bottom = '90%';
+        animationDiv.style.fontSize = '4rem';
+        const timingFunction = 'cubic-bezier(0.1, 0, 0.0, 1)';
+        animationDiv.animate([
+            { right: '100%' }, // Départ de la droite de l'écran
+            { right: '14%' }   // Arrêt au milieu de l'écran
+        ], {
+            duration: duration,   // Durée de l'animation en millisecondes
+            easing: timingFunction, // Fonction d'interpolation
+            fill: 'forwards'  // Garde l'état final de l'animation après la fin
+        });
+    }
+
+    let tourDuJoueur2 = false;
+
+
+    buttonAtkJ2.addEventListener('click', () => {
+        if (!tourDuJoueur2) { // Vérifiez si c'est bien le tour du joueur 2
+            // Vérifier si le joueur 2 a des points de vie restants
+
+            if (choixJ1.pointDeVie > 0) {
+                // Réduire les points de vie du joueur 2 en fonction de l'attaque du joueur 1
+                choixJ1.pointDeVie += choixJ2.atk;
+
+                // Mettez à jour la barre de vie du joueur 1
+                barrePdvJ1.textContent = "Pdv: " + choixJ1.pointDeVie;
+                barrePdvModulableJ1.style.width = choixJ1.pointDeVie - choixJ2.atk;
+
+
+                // Vérifier si le joueur 1 est vaincu
+                if (choixJ1.pointDeVie <= 0) {
+                    alert("Le joueur 1 a été vaincu !");
+                } else {
+                    console.log("Points de vie restants du joueur 1 :", choixJ1.pointDeVie);
+                }
+
+                // Passer le tour au joueur 1
+                tourDuJoueur2 = true;
+                tourDuJoueur1 = true; // Mettez à jour le tour du joueur 1 à la fin du tour du joueur 2
+                startAnimationJ1(phaseDeCombat, 1500); // Démarrer l'animation
+
+
+                imgIopP1.style.animation = 'bouger-haut-bas 2s infinite'; // Stop de l'animation
+                imgCraP1.style.animation = 'bouger-haut-bas 2s infinite'; // Stop de l'animation
+                imgXelP1.style.animation = 'bouger-haut-bas 2s infinite'; // Stop de l'animation
+                imgEniP1.style.animation = 'bouger-haut-bas 2s infinite'; // Stop de l'animation
+
+                imgIopP2.style.animation = 'none'; // activation de l'animation pour le J1
+                imgCraP2.style.animation = 'none'; // activation de l'animation pour le J1
+                imgXelP2.style.animation = 'none'; // activation de l'animation pour le J1
+                imgEniP2.style.animation = 'none'; // activation de l'animation pour le J1
+            }
+        }
+    });
 });
-
-
-
-
-
 

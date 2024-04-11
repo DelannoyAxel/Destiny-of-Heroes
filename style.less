@@ -8,10 +8,13 @@ body {}
 
 
 .pageAccueil {
-    // background-image: url("./images/bg1.jpg");
-    height: 100vh;
+   height: 100vh;
+   background-image: url("./images/waven-saison-lance-dur-cire-momo.png");
+   z-index: -10;
 
-
+   img:nth-child(1){
+        animation: bouger-haut-bas 1.2s ease-in-out infinite alternate;
+    }
 
     .modal {
         display: none;
@@ -59,14 +62,9 @@ body {}
     justify-content: center;
     line-height: 24px;
     padding: 0 25px;
-    position: relative;
     text-align: center;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-
-
-;}
+    position: relative; /* Ajoutez cette propriété */
+}
 
 .tuto:after,
 .startButton:after {
@@ -82,6 +80,7 @@ body {}
     transform: translate(8px, 8px);
     transition: transform .2s ease-out;
     z-index: -1;
+
 }
 
 .tuto:hover:after,
@@ -93,7 +92,6 @@ body {}
 .startButton:active {
     background-color: #ffdeda;
     outline: 0;
-    z-index: 100;
 }
 
 .tuto:hover,
@@ -107,21 +105,24 @@ body {}
     display: none;
     height: 100vh;
     flex-direction: column;
-    background-color: rgb(30, 73, 133);
+    background-image: url('./images/bg21.jpg');
+    background-position-y: 38%;
 
-   
 
-    .player1{
+
+    .player1 {
         color: white;
-        background-color: rgb(30, 73, 133);
-        // position: relative;
-        // top: 50px;
         height: 10vh;
         font-size: 2.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 25px;
+
+        #pseudoPlayer1 {
+            height: 30%;
+            width: 15%;
+        }
     }
 
     button {
@@ -129,31 +130,34 @@ body {}
     }
 
     .personnages1 {
-        background-color: rgb(30, 73, 133);
         height: 70vh;
         display: flex;
         justify-content: center;
         align-items: center;
         animation: bouger-haut-bas 1.2s ease-in-out infinite alternate;
 
-        img{       
-        width: 450px;
-        height: 500px;
+        img {
+            width: 450px;
+            height: 500px;
         }
 
     }
+
     @keyframes bouger-haut-bas {
         0% {
             transform: translateY(0);
         }
+
         50% {
             transform: translateY(-10px);
         }
+
         100% {
             transform: translateY(0);
         }
     }
-    .buttonSelectP2{
+
+    .buttonSelectP2 {
         width: 20%;
         align-items: center;
         background-color: #fee6e3;
@@ -190,7 +194,7 @@ body {}
     //     transition: transform .2s ease-out;
     //     z-index: -1;
     // }
-    
+
     // .buttonSelectP2:hover:after{
     //     transform: translate(0, 0);
     // }
@@ -209,18 +213,26 @@ body {}
     display: none;
     height: 100vh;
     flex-direction: column;
-    background-color: rgb(30, 73, 133);
+    // background-color: rgb(30, 73, 133);
+    background-image: url('./images/bg21.jpg');
+    background-position-y: 38%;
+
 }
 
-.player2{
+.player2 {
     color: white;
-    background-color: rgb(30, 73, 133);
+    // background-color: rgb(30, 73, 133);
     height: 10vh;
     font-size: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 25px;
+
+    #pseudoPlayer2 {
+        height: 30%;
+        width: 15%;
+    }
 }
 
 button {
@@ -228,31 +240,35 @@ button {
 }
 
 .personnages2 {
-    background-color: rgb(30, 73, 133);
+    // background-color: rgb(30, 73, 133);
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     animation: bouger-haut-bas 2s ease-in-out infinite alternate;
 
-    img{       
-    width: 450px;
-    height: 500px;
+    img {
+        width: 450px;
+        height: 500px;
     }
 
 }
+
 @keyframes bouger-haut-bas {
     0% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-10px);
     }
+
     100% {
         transform: translateY(0);
     }
 }
-.buttonStartGame{
+
+.buttonStartGame {
     width: 20%;
     align-items: center;
     background-color: #fee6e3;
@@ -303,22 +319,35 @@ button {
 //     outline: 0;
 // }
 
-.phaseDeCombat{
-    background-color: aquamarine;
+.phaseDeCombat {
+    // background-color: aquamarine;
+    background-image: url('./images/bg25.jpg');
+    background-position-x: 60%;
     width: 100vw;
     height: 100vh;
     display: none;
 
-    #combatP1{
+    #combatP1 {
         width: 50%;
         height: 100vh;
-        background-color: pink;
+        // background-color: pink;
         position: relative;
 
-        h2{
+        h2 {
             text-align: center;
-    
-            }
+            color: white;
+
+        }
+
+        h3 {
+            height: 80vh;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            font-size: 5rem;
+            position: absolute;
+            display: none;
+        }
 
         .imgIopP1,
         .imgCraP1,
@@ -337,23 +366,39 @@ button {
             flex-direction: column;
             justify-content: flex-end;
             align-items: center;
-            color: rgb(0, 136, 255);  
-            font-size: 2REM;      
+            color: rgb(0, 136, 255);
+            font-size: 2REM;
         }
-        
-       
+
+
     }
 
-    #combatP2{
+  
+
+    #combatP2 {
         width: 50%;
-        background-color: rgb(219, 183, 82);
+        // background-color: rgb(219, 183, 82);
         position: relative;
         height: 100vh;
 
-        h2{
+        h2 {
             text-align: center;
-    
-            }
+            color: white;
+
+        }
+
+        h3 {
+            height: 80vh;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            font-size: 5rem;
+            position: absolute;
+            display: none;
+
+
+        }
+
 
         .imgIopP2,
         .imgCraP2,
@@ -365,17 +410,16 @@ button {
             width: 50%;
             display: none;
         }
-        
+
         .caracteristiquesP2 {
             height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             align-items: center;
-            color: rgb(0, 136, 255);  
-            font-size: 2REM;      
+            color: rgb(0, 136, 255);
+            font-size: 2REM;
         }
-        
-    
     }
+
 }

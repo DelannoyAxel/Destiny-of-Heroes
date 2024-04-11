@@ -5,6 +5,11 @@
 }
 .pageAccueil {
   height: 100vh;
+  background-image: url("images/waven-saison-lance-dur-cire-momo.png");
+  z-index: -10;
+}
+.pageAccueil img:nth-child(1) {
+  animation: bouger-haut-bas 1.2s ease-in-out infinite alternate;
 }
 .pageAccueil .modal {
   display: none;
@@ -46,11 +51,9 @@
   justify-content: center;
   line-height: 24px;
   padding: 0 25px;
-  position: relative;
   text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+  position: relative;
+  /* Ajoutez cette propriété */
 }
 .tuto:after,
 .startButton:after {
@@ -75,7 +78,6 @@
 .startButton:active {
   background-color: #ffdeda;
   outline: 0;
-  z-index: 100;
 }
 .tuto:hover,
 .startButton:hover {
@@ -85,11 +87,11 @@
   display: none;
   height: 100vh;
   flex-direction: column;
-  background-color: #1e4985;
+  background-image: url('images/bg21.jpg');
+  background-position-y: 38%;
 }
 .pageSelection1 .player1 {
   color: white;
-  background-color: #1e4985;
   height: 10vh;
   font-size: 2.5rem;
   display: flex;
@@ -97,11 +99,14 @@
   justify-content: center;
   gap: 25px;
 }
+.pageSelection1 .player1 #pseudoPlayer1 {
+  height: 30%;
+  width: 15%;
+}
 .pageSelection1 button {
   padding: 5px;
 }
 .pageSelection1 .personnages1 {
-  background-color: #1e4985;
   height: 70vh;
   display: flex;
   justify-content: center;
@@ -149,11 +154,11 @@
   display: none;
   height: 100vh;
   flex-direction: column;
-  background-color: #1e4985;
+  background-image: url('images/bg21.jpg');
+  background-position-y: 38%;
 }
 .player2 {
   color: white;
-  background-color: #1e4985;
   height: 10vh;
   font-size: 2.5rem;
   display: flex;
@@ -161,11 +166,14 @@
   justify-content: center;
   gap: 25px;
 }
+.player2 #pseudoPlayer2 {
+  height: 30%;
+  width: 15%;
+}
 button {
   padding: 5px;
 }
 .personnages2 {
-  background-color: #1e4985;
   height: 70vh;
   display: flex;
   justify-content: center;
@@ -210,7 +218,8 @@ button {
   align-self: center;
 }
 .phaseDeCombat {
-  background-color: aquamarine;
+  background-image: url('images/bg25.jpg');
+  background-position-x: 60%;
   width: 100vw;
   height: 100vh;
   display: none;
@@ -218,11 +227,20 @@ button {
 .phaseDeCombat #combatP1 {
   width: 50%;
   height: 100vh;
-  background-color: pink;
   position: relative;
 }
 .phaseDeCombat #combatP1 h2 {
   text-align: center;
+  color: white;
+}
+.phaseDeCombat #combatP1 h3 {
+  height: 80vh;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  font-size: 5rem;
+  position: absolute;
+  display: none;
 }
 .phaseDeCombat #combatP1 .imgIopP1,
 .phaseDeCombat #combatP1 .imgCraP1,
@@ -245,12 +263,21 @@ button {
 }
 .phaseDeCombat #combatP2 {
   width: 50%;
-  background-color: #dbb752;
   position: relative;
   height: 100vh;
 }
 .phaseDeCombat #combatP2 h2 {
   text-align: center;
+  color: white;
+}
+.phaseDeCombat #combatP2 h3 {
+  height: 80vh;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  font-size: 5rem;
+  position: absolute;
+  display: none;
 }
 .phaseDeCombat #combatP2 .imgIopP2,
 .phaseDeCombat #combatP2 .imgCraP2,
